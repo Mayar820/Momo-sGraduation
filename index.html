@@ -91,6 +91,6 @@ for(var i=0;i<90;i++)ps.push({x:Math.random()*W,y:Math.random()*H,s:3+Math.rando
 var io=new IntersectionObserver(function(e){e.forEach(function(q){if(q.isIntersecting)q.target.classList.add("in")})},{threshold:.25});
 var secs=[].slice.call(document.querySelectorAll("[data-s]")),tk=false;
 function track(){tk=false;if(!P[2].classList.contains("on"))return;var m=innerHeight/2,best=null,bd=1e9;secs.forEach(function(q){var r=q.getBoundingClientRect(),d=m<r.top?r.top-m:m>r.bottom?m-r.bottom:0;if(d<bd){bd=d;best=q}});if(best)play(best.dataset.s)}
-addEventListener("scroll",function(){if(!tk){tk=true;requestAnimationFrame(track)}},{passive:true});
+document.addEventListener("scroll",function(){if(!tk){tk=true;requestAnimationFrame(track)}},true);setInterval(track,250);
 document.querySelectorAll(".hid").forEach(function(e){io.observe(e)});
 </script></body></html>
